@@ -3,7 +3,7 @@
 
 This repository contains code to apply contrastive learning on Electronic Health Record (EHR) data and generate patient subtypes. The approach leverages a Transformer-based model fine-tuned using a contrastive loss on sequential EHR data. The code computes patient embeddings, clusters them using KMeans, and calculates the optimal k using prediction strength.
 
-> **Note:** Due to data privacy restrictions, the original vocabulary and model files used in our research cannot be shared. In this repository, a Hugging Face BERT model is used as a placeholder. Please replace it with your own model and vocabulary if necessary.
+> **Note:** Due to data privacy restrictions, the original EHR data, vocabulary and model files used in our research cannot be shared. In this repository, a Hugging Face BERT model is used as a placeholder. Please replace it with your own model and vocabulary if necessary. The cohort folder contains synthetic baseline information, and the toy_data_EHR folder contains generated EHR records formatted for direct model training. Users should convert their data to this schema to run the code.
 
 ## Overview
 
@@ -24,13 +24,14 @@ This repository contains code to apply contrastive learning on Electronic Health
 ### Step 2: Train and evaluate the clustering model
 - **`finetune.py`** — Fine-tune a Transformer-based model on EHR data using contrastive learning.  
 - **`evaluate.py`** — Compute patient embeddings with the trained model, cluster them with K-Means, and generate visualisations (e.g., t-SNE).
-
+- **`evaluate_addition_metrics.py`** — Additional clustering metrics. Choose any metrics you like.
+- **`TFIDF.py`** — Train TFIDF moodel with Kmeans as baseline to compare.
 ---
 
 ### Step 3: Analyse clinical profiles and explore genetic signals
-- **`analyze.py`** — Produce survival curves, hospitalisation rates, pre-disease heatmaps, and symptom summaries by cluster.  
-- **`SNP_AD.ipynb`** — Explore cluster-specific genetic differences (SNP-level analyses).
-
+- **`analyze.py`** — clinical analyses such as survival curves, hospitalisation rates, pre-disease heatmaps, and symptom summaries by cluster.  
+- **`SNP.ipynb`** — genetic analyses, such as cluster-specific genetic differences (SNP-level analyses).
+- **`PRS.ipynb`** — genetic analyses, such as cluster-specific genetic differences (PRS-level analyses).
 
 ## Requirements
 
@@ -68,12 +69,7 @@ python finetune.py --disease AD --cohort_dir AD_data --experiment_dir AD --model
 - `--seed 12345`: Seed value for reproducibility.
 - `--device 1`: GPU device identifier for training.
 
-### Evaluating the Trained Model and Generating Subtypes
+### Computational Tips
 For around 40k patients, it cost 4 hours on a single V100 node.
 
-After training, generate patient subtypes using the evaluation script:
-
-```bash
-python evaluate.py --disease AD --cohort_dir AD_data --model_name AD_model --experiment_dir AD --k 5 --fold_idx 4 --device 0 
-```
 
