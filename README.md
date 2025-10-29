@@ -1,4 +1,5 @@
-# EHR Contrastive Learning and Subtyping
+# Subtyping of Alzheimer’s disease and Parkinson’s disease based on pre-diagnostic clinical information: a deep learning study with external validation, prognostic relevance, and genetic explanation
+
 
 This repository contains code to apply contrastive learning on Electronic Health Record (EHR) data and generate patient subtypes. The approach leverages a Transformer-based model fine-tuned using a contrastive loss on sequential EHR data. The code computes patient embeddings, clusters them using KMeans, and calculates the optimal k using prediction strength.
 
