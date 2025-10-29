@@ -1,0 +1,3 @@
+﻿patid,pracid,dob,gender,eventdate,first_diagnosis_date,code
+1,1,01/07/1947,1,12/09/2011,12/09/2011,G308
+2,2,01/07/1970,2,03/01/2014,03/01/2014,G309
